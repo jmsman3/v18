@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Root App Menu (appears as tile on Odoo home dashboard) -->
+    <menuitem
+        id="menu_product_control_root"
+        name="Product Control"
+        sequence="100"
+        groups="product_creation_control.group_manager"/>
+
+    <!-- Configuration sub-menu -->
+    <menuitem
+        id="menu_product_control_configuration"
+        name="Configuration"
+        parent="menu_product_control_root"
+        sequence="10"
+        groups="product_creation_control.group_manager"/>
+
+    <!-- Product Creation Control entry -->
+    <menuitem
+        id="menu_product_creation_control"
+        name="Product Creation Control"
+        parent="menu_product_control_configuration"
+        action="action_product_creation_control"
+        sequence="10"
+        groups="product_creation_control.group_manager"/>
+
+</odoo>

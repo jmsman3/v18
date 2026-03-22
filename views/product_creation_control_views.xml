@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── List View ── -->
+    <record id="view_product_creation_control_list" model="ir.ui.view">
+        <field name="name">product.creation.control.list</field>
+        <field name="model">product.creation.control</field>
+        <field name="arch" type="xml">
+            <list string="Product Creation Control" editable="bottom">
+                <field name="user_id"/>
+                <!-- Creation Sources -->
+                <field name="allow_product_menu"        widget="boolean_toggle" optional="show"/>
+                <field name="allow_purchase_line"       widget="boolean_toggle" optional="show"/>
+                <field name="allow_sales_line"          widget="boolean_toggle" optional="show"/>
+                <field name="allow_bom"                 widget="boolean_toggle" optional="show"/>
+                <field name="allow_inventory"           widget="boolean_toggle" optional="show"/>
+                <field name="allow_vendor_pricelist"    widget="boolean_toggle" optional="show"/>
+                <!-- Edit Permissions -->
+                <field name="allow_product_name_change"     widget="boolean_toggle" optional="show"/>
+                <field name="allow_product_category_change" widget="boolean_toggle" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ── Form View ── -->
+    <record id="view_product_creation_control_form" model="ir.ui.view">
+        <field name="name">product.creation.control.form</field>
+        <field name="model">product.creation.control</field>
+        <field name="arch" type="xml">
+            <form string="Product Creation Control">
+                <sheet>
+                    <group>
+                        <field name="user_id" options="{'no_create': True}"/>
+                    </group>
+
+                    <!-- Section 1: Creation Permissions -->
+                    <group string="Product Creation — Allowed Sources">
+                        <group>
+                            <field name="allow_product_menu"/>
+                            <field name="allow_purchase_line"/>
+                            <field name="allow_sales_line"/>
+                        </group>
+                        <group>
+                            <field name="allow_bom"/>
+                            <field name="allow_inventory"/>
+                            <field name="allow_vendor_pricelist"/>
+                        </group>
+                    </group>
+
+                    <!-- Section 2: Edit Permissions -->
+                    <group string="Product Edit — Allowed Actions">
+                        <group>
+                            <field name="allow_product_name_change"/>
+                        </group>
+                        <group>
+                            <field name="allow_product_category_change"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ── Window Action ── -->
+    <record id="action_product_creation_control" model="ir.actions.act_window">
+        <field name="name">Product Creation Control</field>
+        <field name="res_model">product.creation.control</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No configuration yet.
+            </p>
+            <p>
+                Create a new entry to configure product creation and edit
+                permissions for a user.
+            </p>
+        </field>
+    </record>
+
+</odoo>

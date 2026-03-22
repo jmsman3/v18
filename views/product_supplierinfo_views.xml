@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Inject product_creation_source='vendor_pricelist' into the product_tmpl_id
+        field on the Vendor Pricelist (product.supplierinfo) standalone form.
+        Correct view ID: product.product_supplierinfo_form_view
+    -->
+    <record id="view_supplierinfo_form_product_control" model="ir.ui.view">
+        <field name="name">product.supplierinfo.form.product.creation.control</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                <attribute name="context">{'product_creation_source': 'vendor_pricelist'}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!--
+        Cover the seller_ids list inside product.template Purchase tab.
+        The seller_ids field renders product.supplierinfo records.
+        We inherit from purchase.view_product_supplier_inherit which adds the Purchase tab.
+        We target the seller_ids field's context to inject our source key.
+    -->
+    <record id="view_product_template_seller_ids_product_control" model="ir.ui.view">
+        <field name="name">product.template.seller.ids.product.creation.control</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="purchase.view_product_supplier_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='seller_ids']" position="attributes">
+                <attribute name="context">{'product_creation_source': 'vendor_pricelist', 'default_product_tmpl_id': id, 'product_template_invisible_variant': True, 'list_view_ref': 'purchase.product_supplierinfo_tree_view2'}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

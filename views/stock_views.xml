@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Inject product_creation_source='inventory' into the product_id
+        field on the Stock Quant editable list (Inventory Adjustments).
+        Correct view ID in Odoo 18: stock.view_stock_quant_tree_editable
+    -->
+    <record id="view_stock_quant_tree_product_control" model="ir.ui.view">
+        <field name="name">stock.quant.tree.product.creation.control</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_editable"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                <attribute name="context">{'product_creation_source': 'inventory', 'company_id': company_id}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!--
+        Also cover the Stock Quant form view (single record edit).
+        Correct view ID in Odoo 18: stock.view_stock_quant_form
+    -->
+    <record id="view_stock_quant_form_product_control" model="ir.ui.view">
+        <field name="name">stock.quant.form.product.creation.control</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                <attribute name="context">{'product_creation_source': 'inventory', 'company_id': company_id}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

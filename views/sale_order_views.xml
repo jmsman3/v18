@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Inject product_creation_source='sales_line' into the product_id
+        field context on Sales Order lines.
+        Correct view ID in Odoo 18: sale.view_order_form
+    -->
+    <record id="view_sale_order_form_product_control" model="ir.ui.view">
+        <field name="name">sale.order.form.product.creation.control</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- list: product_template_id (the default visible "Product" column) -->
+            <xpath expr="//field[@name='order_line']//list//field[@name='product_template_id']"
+                   position="attributes">
+                <attribute name="context">{'product_creation_source': 'sales_line', 'partner_id': parent.partner_id, 'quantity': product_uom_qty, 'pricelist': parent.pricelist_id, 'uom': product_uom, 'company_id': parent.company_id, 'default_list_price': price_unit, 'default_uom_id': product_uom}</attribute>
+            </xpath>
+
+            <!-- list: product_id (the optional hidden "Product Variant" column) -->
+            <xpath expr="//field[@name='order_line']//list//field[@name='product_id']"
+                   position="attributes">
+                <attribute name="context">{'product_creation_source': 'sales_line', 'partner_id': parent.partner_id, 'quantity': product_uom_qty, 'pricelist': parent.pricelist_id, 'uom': product_uom, 'company_id': parent.company_id, 'default_lst_price': price_unit, 'default_uom_id': product_uom}</attribute>
+            </xpath>
+
+            <!-- sub-form: product_id inside the expanded line dialog -->
+            <xpath expr="//field[@name='order_line']//form//field[@name='product_id']"
+                   position="attributes">
+                <attribute name="context">{'product_creation_source': 'sales_line', 'partner_id': parent.partner_id, 'quantity': product_uom_qty, 'pricelist': parent.pricelist_id, 'uom': product_uom, 'company_id': parent.company_id, 'default_uom_id': product_uom}</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

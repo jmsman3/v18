@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Module Category (appears as section in user Access Rights tab) -->
+    <record id="module_category_product_creation_control" model="ir.module.category">
+        <field name="name">Product Creation Control</field>
+        <field name="description">Manage product creation source permissions per user</field>
+        <field name="sequence">100</field>
+    </record>
+
+    <!-- Manager Group (shown as dropdown in user Access Rights tab) -->
+    <record id="group_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_product_creation_control"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+</odoo>
