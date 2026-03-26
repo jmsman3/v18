@@ -4,11 +4,42 @@
     'category': 'Product Control',
     'summary': 'Control product creation sources per user',
     'description': """
-        Allows administrators to control from which sources
-        each user is allowed to create products.
-        Sources: Product Menu, Purchase Order, Sales Order,
-        Manufacturing BOM, Inventory, Vendor Pricelist.
+Product Creation Control
+========================
+
+Controls who can create or edit products and from which source in Odoo.
+
+Problem Solved:
+---------------
+In standard Odoo, any user can create products from multiple places
+(Product Menu, Sales Order, Purchase Order, BOM, Inventory, Vendor Pricelist),
+leading to duplicate products, dirty master data, and reporting errors.
+
+Solution:
+---------
+Assign per-user permissions to control exactly which product creation
+sources each user is allowed to use. Also controls whether users can
+edit existing product names and categories.
+
+Sources Controlled:
+-------------------
+- Product Menu
+- Sales Order Line
+- Purchase Order Line
+- Manufacturing BOM
+- Inventory Operations
+- Vendor Pricelist
+
+Edit Permissions:
+-----------------
+- Change Product Name
+- Change Product Category
+
+Developed by: Md. Jubaer Mahmud Sarker
+LinkedIn: https://www.linkedin.com/in/jmsman3/
     """,
+    'author': 'Md. Jubaer Mahmud Sarker',
+    'website': 'https://www.linkedin.com/in/jmsman3/',
     'depends': ['product', 'purchase', 'sale_management', 'mrp', 'stock'],
     'data': [
         'security/security.xml',

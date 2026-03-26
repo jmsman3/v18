@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 { color: #017e84; font-size: 26px; margin-bottom: 4px; }
+        h2 { color: #017e84; font-size: 18px; margin-top: 30px; border-bottom: 2px solid #017e84; padding-bottom: 6px; }
+        h3 { color: #555; font-size: 15px; margin-top: 16px; }
+        p  { line-height: 1.7; margin: 8px 0; }
+        ul { line-height: 1.9; padding-left: 20px; }
+        li { margin-bottom: 4px; }
+        .badge {
+            display: inline-block;
+            background: #017e84;
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-right: 6px;
+        }
+        .problem-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin: 12px 0;
+        }
+        .solution-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin: 12px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        th {
+            background: #017e84;
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+        }
+        td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        tr:nth-child(even) td { background: #f5f5f5; }
+        .developer-box {
+            background: #f0f4ff;
+            border: 1px solid #c0cef7;
+            border-radius: 6px;
+            padding: 14px 18px;
+            margin-top: 30px;
+        }
+        .developer-box a { color: #017e84; text-decoration: none; font-weight: bold; }
+        .developer-box a:hover { text-decoration: underline; }
+        .check { color: #28a745; font-weight: bold; }
+        .cross { color: #dc3545; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>Product Creation Control</h1>
+    <p>
+        <span class="badge">Odoo 18</span>
+        <span class="badge">Inventory</span>
+        <span class="badge">Sales</span>
+        <span class="badge">Purchase</span>
+        <span class="badge">Manufacturing</span>
+    </p>
+    <p>
+        A powerful user-level permission module that gives administrators
+        full control over <strong>who can create products</strong> and
+        <strong>from which location</strong> inside Odoo.
+    </p>
+
+    <!-- ── Problem ─────────────────────────────────── -->
+    <h2>Problem This Module Solves</h2>
+
+    <div class="problem-box">
+        <p>In standard Odoo, <strong>any user</strong> can create a new product from multiple places —
+        directly from the Product menu, inside a Sales Order line, a Purchase Order line,
+        a Bill of Materials, Inventory adjustments, or the Vendor Pricelist.
+        This causes:</p>
+        <ul>
+            <li>Duplicate products created by untrained users</li>
+            <li>Incorrect product names, categories, or configurations</li>
+            <li>Dirty product master data that is hard to clean</li>
+            <li>No accountability — anyone can create anything from anywhere</li>
+            <li>Inventory and reporting errors due to wrong product entries</li>
+        </ul>
+    </div>
+
+    <!-- ── Solution ────────────────────────────────── -->
+    <h2>Solution</h2>
+
+    <div class="solution-box">
+        <p>This module lets the <strong>administrator assign per-user permissions</strong>
+        that control exactly which product creation sources each user is allowed to use.
+        It also controls whether a user can edit an existing product's name or category.</p>
+        <ul>
+            <li>Only authorized users can create products from specific sources</li>
+            <li>Unauthorized attempts are blocked with a clear error message</li>
+            <li>Superuser / Administrator is always unrestricted</li>
+            <li>If no permission record exists for a user — they are blocked by default</li>
+        </ul>
+    </div>
+
+    <!-- ── Features ────────────────────────────────── -->
+    <h2>Key Features</h2>
+
+    <h3>Product Creation Source Control</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Source</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Product Menu</td><td>Create product directly from Inventory / Sales product list</td></tr>
+            <tr><td>Sales Order Line</td><td>Create product on-the-fly inside a Sales Order</td></tr>
+            <tr><td>Purchase Order Line</td><td>Create product on-the-fly inside a Purchase Order</td></tr>
+            <tr><td>Manufacturing BOM</td><td>Create product while building a Bill of Materials</td></tr>
+            <tr><td>Inventory Operations</td><td>Create product during inventory adjustments</td></tr>
+            <tr><td>Vendor Pricelist</td><td>Create product from supplier info / vendor pricelist</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Product Edit Control</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Permission</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Change Product Name</td><td>Allow or block user from renaming an existing product</td></tr>
+            <tr><td>Change Product Category</td><td>Allow or block user from changing an existing product's category</td></tr>
+        </tbody>
+    </table>
+
+    <!-- ── How It Works ─────────────────────────────── -->
+    <h2>How It Works</h2>
+    <ul>
+        <li>Go to <strong>Product Control → Configuration → User Permissions</strong></li>
+        <li>Create a permission record for each user</li>
+        <li>Toggle ON the sources that user is allowed to use</li>
+        <li>Save — restrictions apply immediately</li>
+        <li>Superuser accounts bypass all restrictions automatically</li>
+    </ul>
+
+    <!-- ── Modules Required ─────────────────────────── -->
+    <h2>Dependencies</h2>
+    <ul>
+        <li>product</li>
+        <li>sale_management</li>
+        <li>purchase</li>
+        <li>mrp (Manufacturing)</li>
+        <li>stock (Inventory)</li>
+    </ul>
+
+    <!-- ── Developer ────────────────────────────────── -->
+    <div class="developer-box">
+        <p>
+            <strong>Developed by:</strong> Md. Jubaer Mahmud Sarker<br/>
+            <strong>LinkedIn:</strong>
+            <a href="https://www.linkedin.com/in/jmsman3/" target="_blank">
+                linkedin.com/in/jmsman3
+            </a>
+        </p>
+    </div>
+
+</body>
+</html>

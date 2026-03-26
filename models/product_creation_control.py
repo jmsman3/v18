@@ -1,3 +1,6 @@
+# Developed by: Md. Jubaer Mahmud Sarker
+# LinkedIn: https://www.linkedin.com/in/jmsman3/
+
 from odoo import models, fields, api, _
 
 # Maps context source key → boolean field on product.creation.control
