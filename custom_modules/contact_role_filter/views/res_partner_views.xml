@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit partner form: add Role section with is_customer / is_vendor checkboxes -->
+    <record id="view_partner_form_contact_role" model="ir.ui.view">
+        <field name="name">res.partner.form.contact.role</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Place the Role group right after the company_type radio buttons -->
+            <xpath expr="//field[@name='company_type']" position="after">
+                <group string="Contact Role" col="2">
+                    <field name="is_customer" widget="boolean_toggle"/>
+                    <field name="is_vendor" widget="boolean_toggle"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Show is_customer / is_vendor columns in the partner list view (optional, useful for admins) -->
+    <record id="view_partner_list_contact_role" model="ir.ui.view">
+        <field name="name">res.partner.list.contact.role</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email']" position="after">
+                <field name="is_customer" string="Customer" optional="show"/>
+                <field name="is_vendor" string="Vendor" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Override partner_id on Sale Order form:
+        - domain: only contacts marked as is_customer = True
+        - context: when creating a new contact from here, auto-set is_customer = True (FR-06)
+    -->
+    <record id="view_order_form_customer_role_filter" model="ir.ui.view">
+        <field name="name">sale.order.form.customer.role.filter</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">[('is_customer', '=', True)]</attribute>
+                <attribute name="context">{'default_is_customer': True}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Override partner_id on Purchase Order form:
+        - domain: only contacts marked as is_vendor = True
+        - context: when creating a new contact from here, auto-set is_vendor = True (FR-06)
+    -->
+    <record id="purchase_order_form_vendor_role_filter" model="ir.ui.view">
+        <field name="name">purchase.order.form.vendor.role.filter</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">[('is_vendor', '=', True)]</attribute>
+                <attribute name="context">{'default_is_vendor': True}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
