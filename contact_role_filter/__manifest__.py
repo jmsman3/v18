@@ -43,6 +43,7 @@ LinkedIn: https://www.linkedin.com/in/jmsman3/
         'views/sale_order_views.xml',
         'views/purchase_order_views.xml',
     ],
+    'images': ['images/main_screenshot.png'],
     'installable': True,
     'application': True,
     'license': 'LGPL-3',
