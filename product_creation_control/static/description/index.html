@@ -3,129 +3,337 @@
 <head>
     <meta charset="UTF-8"/>
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: Arial, sans-serif;
-            color: #333;
-            max-width: 900px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6fb;
+            color: #222;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 0 40px 0;
         }
-        h1 { color: #017e84; font-size: 26px; margin-bottom: 4px; }
-        h2 { color: #017e84; font-size: 18px; margin-top: 30px; border-bottom: 2px solid #017e84; padding-bottom: 6px; }
-        h3 { color: #555; font-size: 15px; margin-top: 16px; }
-        p  { line-height: 1.7; margin: 8px 0; }
-        ul { line-height: 1.9; padding-left: 20px; }
-        li { margin-bottom: 4px; }
-        .badge {
-            display: inline-block;
-            background: #017e84;
+
+        /* ── Banner ── */
+        .banner { width: 100%; display: block; border-radius: 0 0 12px 12px; }
+
+        /* ── Hero ── */
+        .hero {
+            background: linear-gradient(135deg, #1B2A4A 0%, #1A6DFF 100%);
             color: #fff;
-            padding: 3px 10px;
+            padding: 36px 40px 30px;
             border-radius: 12px;
+            margin: 20px 16px 0;
+        }
+        .hero h1 { font-size: 30px; font-weight: 800; margin-bottom: 10px; }
+        .hero p { font-size: 15px; opacity: 0.9; line-height: 1.7; max-width: 680px; }
+        .badges { margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+        .badge {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 20px;
             font-size: 12px;
-            margin-right: 6px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.3);
         }
-        .problem-box {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 12px 16px;
-            border-radius: 4px;
-            margin: 12px 0;
+
+        /* ── Section wrapper ── */
+        .section { margin: 28px 16px 0; }
+        .section-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1B2A4A;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #1A6DFF;
+            display: inline-block;
         }
-        .solution-box {
-            background: #d4edda;
-            border-left: 4px solid #28a745;
-            padding: 12px 16px;
-            border-radius: 4px;
-            margin: 12px 0;
+
+        /* ── Problem / Solution cards ── */
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            margin-bottom: 16px;
         }
-        table {
+        .card-problem { border-left: 5px solid #FF6B35; }
+        .card-solution { border-left: 5px solid #00C853; }
+        .card-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1B2A4A;
+            margin-bottom: 10px;
+        }
+        .card p { font-size: 14px; line-height: 1.7; color: #444; }
+        .card ul { padding-left: 18px; margin-top: 10px; }
+        .card ul li { font-size: 14px; line-height: 1.8; color: #444; }
+
+        /* ── Feature grid ── */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 4px;
+        }
+        .feature-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px 18px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            text-align: center;
+            border-top: 4px solid #1A6DFF;
+        }
+        .feature-card .icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .feature-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1B2A4A;
+            margin-bottom: 6px;
+        }
+        .feature-card p { font-size: 12px; color: #666; line-height: 1.6; }
+
+        /* ── Permission table ── */
+        .perm-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 12px;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            margin-top: 4px;
         }
-        th {
-            background: #017e84;
+        .perm-table thead tr { background: linear-gradient(90deg, #1B2A4A, #1A6DFF); }
+        .perm-table th {
             color: #fff;
-            padding: 10px 14px;
+            padding: 13px 18px;
             text-align: left;
+            font-size: 13px;
+            font-weight: 700;
         }
-        td {
-            padding: 9px 14px;
-            border-bottom: 1px solid #e0e0e0;
+        .perm-table td {
+            padding: 11px 18px;
+            font-size: 13px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #333;
         }
-        tr:nth-child(even) td { background: #f5f5f5; }
-        .developer-box {
-            background: #f0f4ff;
-            border: 1px solid #c0cef7;
-            border-radius: 6px;
+        .perm-table tr:last-child td { border-bottom: none; }
+        .perm-table tr:nth-child(even) td { background: #f8f9ff; }
+        .perm-table td:first-child { font-weight: 600; color: #1B2A4A; }
+
+        /* ── Steps ── */
+        .steps { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .step-num {
+            background: linear-gradient(135deg, #1A6DFF, #00C853);
+            color: #fff;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .step-text h4 { font-size: 14px; font-weight: 700; color: #1B2A4A; margin-bottom: 3px; }
+        .step-text p { font-size: 13px; color: #555; line-height: 1.5; }
+
+        /* ── Video ── */
+        .video-wrapper {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            margin-top: 4px;
+        }
+        .video-wrapper p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 14px;
+            line-height: 1.6;
+        }
+        .video-embed {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        /* ── Developer ── */
+        .dev-card {
+            background: linear-gradient(135deg, #1B2A4A 0%, #1A6DFF 100%);
+            border-radius: 12px;
+            padding: 24px 28px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 16px rgba(26,109,255,0.3);
+            margin-top: 4px;
+        }
+        .dev-avatar {
+            width: 56px;
+            height: 56px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            flex-shrink: 0;
+        }
+        .dev-info h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .dev-info p { font-size: 13px; opacity: 0.85; line-height: 1.6; }
+        .dev-info a { color: #7fffb2; text-decoration: none; font-weight: 600; }
+        .dev-info a:hover { text-decoration: underline; }
+
+        /* ── Warning note ── */
+        .note-box {
+            background: #fff8e1;
+            border-left: 4px solid #FFC107;
+            border-radius: 8px;
             padding: 14px 18px;
-            margin-top: 30px;
+            font-size: 13px;
+            color: #555;
+            margin-top: 14px;
+            line-height: 1.6;
         }
-        .developer-box a { color: #017e84; text-decoration: none; font-weight: bold; }
-        .developer-box a:hover { text-decoration: underline; }
-        .check { color: #28a745; font-weight: bold; }
-        .cross { color: #dc3545; font-weight: bold; }
+        .note-box strong { color: #333; }
     </style>
 </head>
 <body>
-<img src="banner.png" style="width:100%; margin-bottom:20px;"/>
 
+<!-- ── Banner ── -->
+<img src="banner.png" class="banner" alt="Product Creation Control Banner"/>
+
+<!-- ── Hero ── -->
+<div class="hero">
     <h1>Product Creation Control</h1>
     <p>
+        A powerful user-level permission module that gives administrators
+        full control over <strong>who can create products</strong> and
+        <strong>from which location</strong> inside Odoo — per user, per source.
+    </p>
+    <div class="badges">
         <span class="badge">Odoo 18</span>
         <span class="badge">Inventory</span>
         <span class="badge">Sales</span>
         <span class="badge">Purchase</span>
         <span class="badge">Manufacturing</span>
-    </p>
-    <p>
-        A powerful user-level permission module that gives administrators
-        full control over <strong>who can create products</strong> and
-        <strong>from which location</strong> inside Odoo.
-    </p>
+        <span class="badge">Free</span>
+    </div>
+</div>
 
-    <!-- ── Problem ─────────────────────────────────── -->
-    <h2>Problem This Module Solves</h2>
-
-    <div class="problem-box">
-        <p>In standard Odoo, <strong>any user</strong> can create a new product from multiple places —
-        directly from the Product menu, inside a Sales Order line, a Purchase Order line,
-        a Bill of Materials, Inventory adjustments, or the Vendor Pricelist.
-        This causes:</p>
+<!-- ── Problem ── -->
+<div class="section">
+    <div class="section-title">Problem This Module Solves</div>
+    <div class="card card-problem">
+        <span class="card-icon">⚠️</span>
+        <h3>Standard Odoo has no product creation restriction</h3>
+        <p>Any user can create a new product from multiple places — the Product menu, Sales Order lines, Purchase Order lines, Bills of Materials, Inventory adjustments, or the Vendor Pricelist. This causes:</p>
         <ul>
             <li>Duplicate products created by untrained users</li>
             <li>Incorrect product names, categories, or configurations</li>
-            <li>Dirty product master data that is hard to clean</li>
+            <li>Dirty product master data that is extremely hard to clean</li>
             <li>No accountability — anyone can create anything from anywhere</li>
             <li>Inventory and reporting errors due to wrong product entries</li>
         </ul>
     </div>
+</div>
 
-    <!-- ── Solution ────────────────────────────────── -->
-    <h2>Solution</h2>
-
-    <div class="solution-box">
-        <p>This module lets the <strong>administrator assign per-user permissions</strong>
-        that control exactly which product creation sources each user is allowed to use.
-        It also controls whether a user can edit an existing product's name or category.</p>
+<!-- ── Solution ── -->
+<div class="section">
+    <div class="section-title">Solution</div>
+    <div class="card card-solution">
+        <span class="card-icon">✅</span>
+        <h3>Per-user, per-source product creation permissions</h3>
+        <p>This module lets the administrator assign granular permissions per user — controlling exactly which product creation sources they can use, and whether they can edit product names or categories.</p>
         <ul>
             <li>Only authorized users can create products from specific sources</li>
-            <li>Unauthorized attempts are blocked with a clear error message</li>
+            <li>Unauthorized attempts are blocked with a clear, friendly error message</li>
             <li>Superuser / Administrator is always unrestricted</li>
-            <li>If no permission record exists for a user — they are blocked by default</li>
+            <li>If no permission record exists for a user — they are blocked by default (secure by design)</li>
         </ul>
     </div>
+</div>
 
-    <!-- ── Features ────────────────────────────────── -->
-    <h2>Key Features</h2>
+<!-- ── Features ── -->
+<div class="section">
+    <div class="section-title">Key Features</div>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <span class="icon">🛒</span>
+            <h4>Sales Order Line</h4>
+            <p>Block or allow product creation directly inside a Sales Order line</p>
+        </div>
+        <div class="feature-card">
+            <span class="icon">📦</span>
+            <h4>Purchase Order Line</h4>
+            <p>Control product creation from Purchase Order line dropdowns</p>
+        </div>
+        <div class="feature-card">
+            <span class="icon">🏭</span>
+            <h4>Manufacturing BOM</h4>
+            <p>Restrict product creation while building Bills of Materials</p>
+        </div>
+        <div class="feature-card">
+            <span class="icon">🗂️</span>
+            <h4>Product Menu</h4>
+            <p>Control direct product creation from the main Product list</p>
+        </div>
+        <div class="feature-card">
+            <span class="icon">📋</span>
+            <h4>Inventory Operations</h4>
+            <p>Block creating products during stock adjustments</p>
+        </div>
+        <div class="feature-card">
+            <span class="icon">🏷️</span>
+            <h4>Vendor Pricelist</h4>
+            <p>Restrict product creation from Supplier Info forms</p>
+        </div>
+    </div>
+</div>
 
-    <h3>Product Creation Source Control</h3>
-    <table>
+<!-- ── Permission Matrix ── -->
+<div class="section">
+    <div class="section-title">Permission Matrix</div>
+
+    <p style="font-size:13px; color:#555; margin-bottom:12px;">
+        <strong>Creation Permissions</strong> — control where a user can create new products:
+    </p>
+    <table class="perm-table">
         <thead>
             <tr>
                 <th>Source</th>
-                <th>Description</th>
+                <th>What It Controls</th>
             </tr>
         </thead>
         <tbody>
@@ -138,50 +346,100 @@
         </tbody>
     </table>
 
-    <h3>Product Edit Control</h3>
-    <table>
+    <p style="font-size:13px; color:#555; margin: 18px 0 12px;">
+        <strong>Edit Permissions</strong> — control what a user can modify on existing products:
+    </p>
+    <table class="perm-table">
         <thead>
             <tr>
                 <th>Permission</th>
-                <th>Description</th>
+                <th>What It Controls</th>
             </tr>
         </thead>
         <tbody>
-            <tr><td>Change Product Name</td><td>Allow or block user from renaming an existing product</td></tr>
-            <tr><td>Change Product Category</td><td>Allow or block user from changing an existing product's category</td></tr>
+            <tr><td>Change Product Name</td><td>Allow or block renaming an existing product</td></tr>
+            <tr><td>Change Product Category</td><td>Allow or block changing an existing product's category</td></tr>
         </tbody>
     </table>
 
-    <!-- ── How It Works ─────────────────────────────── -->
-    <h2>How It Works</h2>
-    <ul>
-        <li>Go to <strong>Product Control → Configuration → User Permissions</strong></li>
-        <li>Create a permission record for each user</li>
-        <li>Toggle ON the sources that user is allowed to use</li>
-        <li>Save — restrictions apply immediately</li>
-        <li>Superuser accounts bypass all restrictions automatically</li>
-    </ul>
-
-    <!-- ── Modules Required ─────────────────────────── -->
-    <h2>Dependencies</h2>
-    <ul>
-        <li>product</li>
-        <li>sale_management</li>
-        <li>purchase</li>
-        <li>mrp (Manufacturing)</li>
-        <li>stock (Inventory)</li>
-    </ul>
-
-    <!-- ── Developer ────────────────────────────────── -->
-    <div class="developer-box">
-        <p>
-            <strong>Developed by:</strong> Md. Jubaer Mahmud Sarker<br/>
-            <strong>LinkedIn:</strong>
-            <a href="https://www.linkedin.com/in/jmsman3/" target="_blank">
-                linkedin.com/in/jmsman3
-            </a>
-        </p>
+    <div class="note-box">
+        <strong>Default behavior:</strong> If no permission record exists for a user, they are <strong>blocked from all product creation by default</strong>. Superuser and Administrator accounts always bypass all restrictions.
     </div>
+</div>
+
+<!-- ── How It Works ── -->
+<div class="section">
+    <div class="section-title">How It Works</div>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+                <h4>Open Configuration</h4>
+                <p>Go to <strong>Product Control → Configuration → User Permissions</strong> from the Odoo menu.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+                <h4>Create a Permission Record</h4>
+                <p>Add a new entry and select the user you want to configure permissions for.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+                <h4>Toggle Permissions</h4>
+                <p>Enable or disable each source permission and edit permission using the toggle switches.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-text">
+                <h4>Save &amp; Apply</h4>
+                <p>Save the record — restrictions apply <strong>immediately</strong> for that user. No restart required.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-text">
+                <h4>Blocked Users See a Clear Message</h4>
+                <p>When a restricted user tries to create a product from a blocked source, Odoo shows a friendly error message guiding them to contact the administrator.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── Video Demo ── -->
+<div class="section">
+    <div class="section-title">Watch Demo Video</div>
+    <div class="video-wrapper">
+        <p>
+            See <strong>Product Creation Control</strong> in action — a full walkthrough of the module setup,
+            permission configuration, and live blocking demonstration inside Odoo 18.
+        </p>
+        <div class="video-embed">
+            <iframe
+                src="https://www.youtube.com/embed/hTfB6EX0vgA"
+                title="Product Creation Control — Demo"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>
+
+<!-- ── Developer ── -->
+<div class="section">
+    <div class="dev-card">
+        <div class="dev-avatar">👨‍💻</div>
+        <div class="dev-info">
+            <h4>Md. Jubaer Mahmud Sarker</h4>
+            <p>
+                Odoo Developer &amp; Module Publisher<br/>
+                <a href="https://www.linkedin.com/in/jmsman3/" target="_blank">linkedin.com/in/jmsman3</a>
+            </p>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
