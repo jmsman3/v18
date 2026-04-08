@@ -12,7 +12,7 @@ SOURCE_FIELD_MAP = {
     'inventory':        'allow_inventory',
     'vendor_pricelist': 'allow_vendor_pricelist',
 }
-
+#---------------------
 
 class ProductCreationControl(models.Model):
     _name = 'product.creation.control'
