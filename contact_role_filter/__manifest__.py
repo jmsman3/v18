@@ -34,7 +34,7 @@ Smart Auto-Role:
 Developed by: Md. Jubaer Mahmud Sarker
 LinkedIn: https://www.linkedin.com/in/jmsman3/
     """,
-    'author': 'Md. Jubaer Mahmud Sarker',
+    'author': 'The OdooCraft Solution',
     'website': 'https://www.linkedin.com/in/jmsman3/',
     'depends': ['sale_management', 'purchase'],
     'data': [
