@@ -35,7 +35,7 @@ Developed by: Md. Jubaer Mahmud Sarker
 LinkedIn: https://www.linkedin.com/in/jmsman3/
     """,
     'author': 'OdooNest',
-    'website': 'https://www.linkedin.com/in/jmsman3/',
+    'website': 'https://www.odoonest.com/',
     'depends': ['sale_management', 'purchase'],
     'data': [
         'security/ir.model.access.csv',
