@@ -38,8 +38,8 @@ Edit Permissions:
 Developed by: Md. Jubaer Mahmud Sarker
 LinkedIn: https://www.linkedin.com/in/jmsman3/
     """,
-    'author': 'The OdooCraft Solution',
-    'website': 'https://www.linkedin.com/in/jmsman3/',
+    'author': 'OdooNest',
+    'website': 'https://www.odoonest.com',
     'depends': ['product', 'purchase', 'sale_management', 'mrp', 'stock'],
     'data': [
         'security/security.xml',
